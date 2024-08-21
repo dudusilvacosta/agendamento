@@ -119,38 +119,13 @@
 
           <q-separator spaced />
 
-          <div class="text-h6">Data e hora</div>
-          <div>
-            <q-date v-model="date" minimal class="q-mb-md" />
+          <div class="text-h6">Data</div>
+          <div>{{ dataAdendada }}</div>
 
-            <q-input
-              filled
-              v-model="timeWithSeconds"
-              mask="fulltime"
-              :rules="['fulltime']"
-            >
-              <template v-slot:append>
-                <q-icon name="access_time" class="cursor-pointer">
-                  <q-popup-proxy
-                    cover
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-time v-model="timeWithSeconds" with-seconds format24h>
-                      <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
-                      </div>
-                    </q-time>
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
-          </div>
+          <q-separator spaced />
+
+          <div class="text-h6">Hora</div>
+          <div>{{ time }}</div>
 
           <q-separator spaced />
 
@@ -193,7 +168,7 @@ export default defineComponent({
   },
 
   setup() {
-    const valorInicial = ref(100);
+    // Função para obter a data de hoje no formato YYYY/MM/DD
     const getTodayDate = () => {
       const today = new Date();
       const year = today.getFullYear();
@@ -211,6 +186,12 @@ export default defineComponent({
       return `${hours}:${minutes}`;
     };
 
+    // Função para formatar a data em dd/MM/yyyy
+    const formatDate = (dateString: string) => {
+      const [year, month, day] = dateString.split('/');
+      return `${day}/${month}/${year}`;
+    };
+
     // Função para obter o horário atual no formato HH:MM:SS
     const getCurrentTimeWithSeconds = () => {
       const today = new Date();
@@ -221,6 +202,7 @@ export default defineComponent({
     };
 
     // Variáveis reativas com valores iniciais
+    const valorInicial = ref(100);
     const time = ref(getCurrentTime());
     const timeWithSeconds = ref(getCurrentTimeWithSeconds());
     return {
@@ -232,6 +214,7 @@ export default defineComponent({
       options: ['Chanel ', 'Long Bob', 'Busto', 'Cintura', 'Quadril'],
       time,
       timeWithSeconds,
+      dataAdendada: ref(formatDate(getTodayDate())),
     };
   },
 });
