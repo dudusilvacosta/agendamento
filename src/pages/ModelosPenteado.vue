@@ -5,7 +5,7 @@
       <div v-for="(modelo, index) in modelosPenteado" :key="index">
         <q-card class="my-card">
           <q-img :src="modelo.img">
-            <div class="absolute-bottom text-h6">
+            <div class="absolute-bottom" style="font-size: 1rem">
               A partir de R${{ modelo.preco }}
             </div>
           </q-img>

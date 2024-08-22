@@ -119,12 +119,12 @@
 
           <q-separator spaced />
 
-          <div class="text-h6">Data</div>
+          <div class="text-h6">Data do procedimento</div>
           <div>{{ dataAdendada }}</div>
 
           <q-separator spaced />
 
-          <div class="text-h6">Hora</div>
+          <div class="text-h6">Hora do procedimento</div>
           <div>{{ time }}</div>
 
           <q-separator spaced />
