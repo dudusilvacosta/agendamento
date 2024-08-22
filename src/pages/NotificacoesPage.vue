@@ -83,7 +83,7 @@ h2 {
 .chat {
   width: 100%;
   height: calc(100vh - 145px);
-  max-width: 400px;
+  max-width: 600px;
   padding: 1rem;
   background-color: #e3e3e3;
 }
