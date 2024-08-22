@@ -2,7 +2,17 @@
   <div class="q-pa-md">
     <h2>Notificações</h2>
     <div class="q-pa-md row justify-center">
-      <div style="width: 100%; max-width: 400px">
+      <div class="chat">
+        <q-chat-message
+          name="Agendamento"
+          avatar="https://cdn.quasar.dev/img/avatar1.jpg"
+          :text="['hey, how are you?']"
+          stamp="7 minutes ago"
+          sent
+          bg-color="amber-7"
+          class="q-mb-md"
+        />
+
         <q-chat-message
           name="Agendamento"
           avatar="https://cdn.quasar.dev/img/avatar1.jpg"
@@ -69,5 +79,12 @@ h2 {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 500;
+}
+.chat {
+  width: 100%;
+  height: calc(100vh - 180px);
+  max-width: 400px;
+  padding: 1rem;
+  background-color: #e3e3e3;
 }
 </style>

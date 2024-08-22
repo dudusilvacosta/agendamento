@@ -1,29 +1,36 @@
 <template>
-  <div class="container">
-    <div class="q-pa-md" style="width: 100vw; max-width: 300px">
-      <h2>Entrar</h2>
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-        <q-input filled v-model="name" label="Seu e-mail" hint="obrigatório" />
-
-        <q-input
-          filled
-          type="password"
-          v-model="age"
-          label="Sua senha"
-          hint="obrigatório"
-        />
-
-        <div>
-          <q-btn label="Enviar" type="submit" color="primary" />
-          <q-btn
-            label="Limpar"
-            type="reset"
-            color="primary"
-            flat
-            class="q-ml-sm"
+  <div class="q-pa-md">
+    <h2>Entrar</h2>
+    <div class="container">
+      <div style="width: calc(100% - 200px); max-width: 600px">
+        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+          <q-input
+            filled
+            v-model="name"
+            label="Seu e-mail"
+            hint="obrigatório"
           />
-        </div>
-      </q-form>
+
+          <q-input
+            filled
+            type="password"
+            v-model="age"
+            label="Sua senha"
+            hint="obrigatório"
+          />
+
+          <div>
+            <q-btn label="Enviar" type="submit" color="primary" />
+            <q-btn
+              label="Limpar"
+              type="reset"
+              color="primary"
+              flat
+              class="q-ml-sm"
+            />
+          </div>
+        </q-form>
+      </div>
     </div>
   </div>
 </template>

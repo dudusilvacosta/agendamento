@@ -1,50 +1,52 @@
 <template>
-  <div class="q-pa-md container">
-    <div style="width: 100vw; max-width: 500px">
-      <h2>Criar Conta</h2>
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-        <q-input
-          filled
-          v-model="name"
-          label="informar E-mail"
-          hint="obrigatório"
-        />
-
-        <q-input
-          filled
-          v-model="name"
-          label="Informar Senha"
-          hint="obrigatório"
-        />
-
-        <q-input
-          filled
-          type="password"
-          v-model="age"
-          label="Repetir senha"
-          hint="obrigatório"
-        />
-
-        <q-scroll-area class="scroll">
-          <div v-for="n in 100" :key="n" class="q-py-xs">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </div>
-        </q-scroll-area>
-
-        <q-toggle v-model="accept" label="Eu aceito a licença e os termos" />
-
-        <div>
-          <q-btn label="Enviar" type="submit" color="primary" />
-          <q-btn
-            label="Limpar"
-            type="reset"
-            color="primary"
-            flat
-            class="q-ml-sm"
+  <div class="q-pa-md">
+    <h2>Criar Conta</h2>
+    <div class="container">
+      <div style="width: 100vw; max-width: 600px">
+        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+          <q-input
+            filled
+            v-model="name"
+            label="informar E-mail"
+            hint="obrigatório"
           />
-        </div>
-      </q-form>
+
+          <q-input
+            filled
+            v-model="name"
+            label="Informar Senha"
+            hint="obrigatório"
+          />
+
+          <q-input
+            filled
+            type="password"
+            v-model="age"
+            label="Repetir senha"
+            hint="obrigatório"
+          />
+
+          <q-scroll-area class="scroll">
+            <div v-for="n in 100" :key="n" class="q-py-xs">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </q-scroll-area>
+
+          <q-toggle v-model="accept" label="Eu aceito a licença e os termos" />
+
+          <div>
+            <q-btn label="Enviar" type="submit" color="primary" />
+            <q-btn
+              label="Limpar"
+              type="reset"
+              color="primary"
+              flat
+              class="q-ml-sm"
+            />
+          </div>
+        </q-form>
+      </div>
     </div>
   </div>
 </template>
@@ -99,13 +101,13 @@ export default defineComponent({
 
 <style>
 .container {
-  height: 100vh;
+  height: calc(100vh - 200px);
   display: flex;
   justify-content: center;
 }
 
 .scroll {
-  height: calc(100vh - 525px);
+  height: calc(100vh - 530px);
 }
 h2 {
   margin: 0;

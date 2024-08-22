@@ -1,7 +1,7 @@
 <template>
   <div class="q-ma-md">
+    <h2>Sobre</h2>
     <div class="container">
-      <h2>Sobre</h2>
       <p v-for="n in 10" :key="n" class="q-py-xs">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
@@ -27,7 +27,7 @@ export default defineComponent({
 <style scoped>
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
 }
 h2 {

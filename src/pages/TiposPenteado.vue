@@ -1,23 +1,25 @@
 <template>
   <div class="q-pa-md">
     <h2>Tipos de Penteados</h2>
-    <div v-for="(tipo, index) in tiposPenteados" :key="index" class="tipo">
-      <img :src="tipo.img" class="img" />
-      <q-list bordered class="rounded-borders list">
-        <q-expansion-item expand-separator :label="tipo.nome" caption="">
-          <q-card>
-            <q-card-section>
-              <p>{{ tipo.desc }}</p>
-              <q-btn
-                label="Ver modelos"
-                color="primary"
-                to="/modelos-penteado"
-                class="btn"
-              />
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
-      </q-list>
+    <div style="width: 100%; max-width: 600px; margin: 0 auto">
+      <div v-for="(tipo, index) in tiposPenteados" :key="index" class="tipo">
+        <img :src="tipo.img" class="img" />
+        <q-list bordered class="rounded-borders list">
+          <q-expansion-item expand-separator :label="tipo.nome" caption="">
+            <q-card>
+              <q-card-section>
+                <p>{{ tipo.desc }}</p>
+                <q-btn
+                  label="Ver modelos"
+                  color="primary"
+                  to="/modelos-penteado"
+                  class="btn"
+                />
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
+        </q-list>
+      </div>
     </div>
   </div>
 </template>
@@ -116,7 +118,7 @@ h2 {
   border-radius: 5px;
 }
 .list {
-  width: 100%;
+  width: 80%;
 }
 .btn {
   font-size: 0.75rem;
