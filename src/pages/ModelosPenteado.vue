@@ -103,7 +103,8 @@ export default defineComponent({
 <style scoped>
 h2 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .container {

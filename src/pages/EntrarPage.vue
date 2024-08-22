@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <h2>Entrar</h2>
     <div class="container">
-      <div style="width: calc(100% - 200px); max-width: 600px">
+      <div style="width: 100%; max-width: 600px">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <q-input
             filled
@@ -85,7 +85,7 @@ export default defineComponent({
 
 <style scoped>
 .container {
-  height: 80vh;
+  height: calc(100vh - 220px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,6 +93,6 @@ export default defineComponent({
 h2 {
   margin: 0;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 </style>

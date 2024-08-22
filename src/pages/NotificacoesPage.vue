@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <h2>Notificações</h2>
-    <div class="q-pa-md row justify-center">
+    <div class="row justify-center">
       <div class="chat">
         <q-chat-message
           name="Agendamento"
@@ -78,11 +78,11 @@ export default defineComponent({
 h2 {
   margin: 0;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 .chat {
   width: 100%;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 145px);
   max-width: 400px;
   padding: 1rem;
   background-color: #e3e3e3;
