@@ -67,7 +67,6 @@
           <q-date
             v-model="date"
             :options="datasLivres"
-            multiple
             minimal
             class="q-mb-md"
           />
@@ -266,7 +265,7 @@ h2 {
   font-size: 1.5rem;
   font-weight: 400;
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 600px) {
   .container {
     max-width: 100%;
   }
