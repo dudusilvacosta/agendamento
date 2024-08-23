@@ -1,152 +1,162 @@
 <template>
-  <div class="container">
-    <q-stepper v-model="step" vertical color="primary" animated>
-      <q-step :name="1" title="Modelo do penteado" icon="done" :done="step > 1">
-        <q-card>
-          <q-img
-            src="https://img.freepik.com/fotos-premium/foto-de-box-braids_889056-2231.jpg"
-          >
-            <div class="absolute-bottom text-h6">
-              Valor inicial R$ {{ valorInicial }}
-            </div>
-          </q-img>
-        </q-card>
-
-        <q-stepper-navigation>
-          <q-btn @click="step = 2" color="primary" label="Continue" />
-        </q-stepper-navigation>
-      </q-step>
-
-      <q-step
-        :name="2"
-        title="Escolher o comprimento do penteado"
-        caption=""
-        icon="straighten"
-        :done="step > 2"
-      >
-        <q-card class="q-mb-md">
-          <q-img
-            src="https://i.pinimg.com/originals/42/29/59/4229593e8eca1f984760aae49352d07a.jpg"
-          >
-          </q-img>
-        </q-card>
-        <q-select
-          filled
-          v-model="model"
-          :options="options"
-          label="Comprimento"
-        />
-
-        <q-stepper-navigation>
-          <q-btn @click="step = 3" color="primary" label="Continue" />
-          <q-btn
-            flat
-            @click="step = 1"
-            color="primary"
-            label="Voltar"
-            class="q-ml-sm"
-          />
-        </q-stepper-navigation>
-      </q-step>
-
-      <q-step
-        :name="3"
-        title="Escolher data e a hora"
-        caption=""
-        icon="calendar_month"
-        :done="step > 3"
-      >
-        <q-date v-model="date" minimal class="q-mb-md" />
-
-        <q-input
-          filled
-          v-model="timeWithSeconds"
-          mask="fulltime"
-          :rules="['fulltime']"
+  <div class="q-pa-md">
+    <h2>Agendamento</h2>
+    <div class="container">
+      <q-stepper v-model="step" vertical color="primary" animated>
+        <q-step
+          :name="1"
+          title="Modelo do penteado"
+          icon="done"
+          :done="step > 1"
         >
-          <template v-slot:append>
-            <q-icon name="access_time" class="cursor-pointer">
-              <q-popup-proxy
-                cover
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-time v-model="timeWithSeconds" with-seconds format24h>
-                  <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
-                  </div>
-                </q-time>
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
+          <q-card>
+            <q-img
+              src="https://img.freepik.com/fotos-premium/foto-de-box-braids_889056-2231.jpg"
+            >
+              <div class="absolute-bottom text-h6">
+                Valor inicial R$ {{ valorInicial }}
+              </div>
+            </q-img>
+          </q-card>
 
-        <q-stepper-navigation>
-          <q-btn @click="step = 4" color="primary" label="Continue" />
-          <q-btn
-            flat
-            @click="step = 2"
-            color="primary"
-            label="Voltar"
-            class="q-ml-sm"
+          <q-stepper-navigation>
+            <q-btn @click="step = 2" color="primary" label="Continue" />
+          </q-stepper-navigation>
+        </q-step>
+
+        <q-step
+          :name="2"
+          title="Escolher o comprimento do penteado"
+          caption=""
+          icon="straighten"
+          :done="step > 2"
+        >
+          <q-card>
+            <q-img
+              src="https://i.pinimg.com/originals/42/29/59/4229593e8eca1f984760aae49352d07a.jpg"
+            >
+            </q-img>
+          </q-card>
+          <q-select
+            filled
+            v-model="cumprimento"
+            :options="coprimentos"
+            label="Comprimento"
+            class="q-mt-md"
           />
-        </q-stepper-navigation>
-      </q-step>
 
-      <q-step
-        :name="4"
-        title="Finalizar agendamento"
-        caption=""
-        icon="done_all"
-      >
-        <div class="col-12 col-sm-6 q-gutter-sm">
-          <div class="text-h6">Tipo de penteado</div>
-          <div>selected</div>
+          <q-stepper-navigation>
+            <q-btn @click="step = 3" color="primary" label="Continue" />
+            <q-btn
+              flat
+              @click="step = 1"
+              color="primary"
+              label="Voltar"
+              class="q-ml-sm"
+            />
+          </q-stepper-navigation>
+        </q-step>
 
-          <q-separator spaced />
-
-          <div class="text-h6">Modelo de penteado</div>
-          <div>
-            <div>tick</div>
-          </div>
-
-          <q-separator spaced />
-
-          <div class="text-h6">Comprimento do penteado</div>
-          <div>
-            <div>{{ model }}</div>
-          </div>
-
-          <q-separator spaced />
-
-          <div class="text-h6">Data do procedimento</div>
-          <div>{{ dataAdendada }}</div>
-
-          <q-separator spaced />
-
-          <div class="text-h6">Hora do procedimento</div>
-          <div>{{ time }}</div>
-
-          <q-separator spaced />
-
-          <div class="text-h6">Valor final</div>
-          <div>
-            <div>R$</div>
-          </div>
-        </div>
-
-        <q-stepper-navigation>
-          <q-btn color="primary" label="Agendar agora" />
-          <q-btn
-            flat
-            @click="step = 3"
-            color="primary"
-            label="Voltar"
-            class="q-ml-sm"
+        <q-step
+          :name="3"
+          title="Escolher data e a hora"
+          caption=""
+          icon="calendar_month"
+          :done="step > 3"
+        >
+          <q-date
+            v-model="date"
+            :options="datasLivres"
+            multiple
+            minimal
+            class="q-mb-md"
           />
-        </q-stepper-navigation>
-      </q-step>
-    </q-stepper>
+
+          <q-input filled v-model="time" mask="time" :rules="['time']">
+            <template v-slot:append>
+              <q-icon name="access_time" class="cursor-pointer">
+                <q-popup-proxy
+                  cover
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-time v-model="time">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                    </div>
+                  </q-time>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+
+          <q-stepper-navigation>
+            <q-btn @click="step = 4" color="primary" label="Continue" />
+            <q-btn
+              flat
+              @click="step = 2"
+              color="primary"
+              label="Voltar"
+              class="q-ml-sm"
+            />
+          </q-stepper-navigation>
+        </q-step>
+
+        <q-step
+          :name="4"
+          title="Finalizar agendamento"
+          caption=""
+          icon="done_all"
+        >
+          <div class="col-12 col-sm-6 q-gutter-sm">
+            <div class="text-h6">Tipo de penteado</div>
+            <div>selected</div>
+
+            <q-separator spaced />
+
+            <div class="text-h6">Modelo de penteado</div>
+            <div>
+              <div>tick</div>
+            </div>
+
+            <q-separator spaced />
+
+            <div class="text-h6">Comprimento do penteado</div>
+            <div>
+              <div>{{ cumprimento }}</div>
+            </div>
+
+            <q-separator spaced />
+
+            <div class="text-h6">Data do procedimento</div>
+            <div>{{ dataAgendada }}</div>
+
+            <q-separator spaced />
+
+            <div class="text-h6">Hora do procedimento</div>
+            <div>{{ time }}</div>
+
+            <q-separator spaced />
+
+            <div class="text-h6">Valor final</div>
+            <div>
+              <div>R$</div>
+            </div>
+          </div>
+
+          <q-stepper-navigation>
+            <q-btn color="primary" label="Agendar agora" />
+            <q-btn
+              flat
+              @click="step = 3"
+              color="primary"
+              label="Voltar"
+              class="q-ml-sm"
+            />
+          </q-stepper-navigation>
+        </q-step>
+      </q-stepper>
+    </div>
   </div>
 </template>
 
@@ -205,16 +215,42 @@ export default defineComponent({
     const valorInicial = ref(100);
     const time = ref(getCurrentTime());
     const timeWithSeconds = ref(getCurrentTimeWithSeconds());
+    const datasLivres = ref([
+      '2024/08/01',
+      '2024/08/02', // quinta e sexta
+      '2024/08/05',
+      '2024/08/06',
+      '2024/08/07',
+      '2024/08/08',
+      '2024/08/09', // segunda a sexta
+      '2024/08/12',
+      '2024/08/13',
+      '2024/08/14',
+      '2024/08/15',
+      '2024/08/16', // segunda a sexta
+      '2024/08/19',
+      '2024/08/20',
+      '2024/08/21',
+      '2024/08/22',
+      '2024/08/23', // segunda a sexta
+      '2024/08/26',
+      '2024/08/27',
+      '2024/08/28',
+      '2024/08/29',
+      '2024/08/30', // segunda a sexta
+    ]);
+    const datasAgendadas = ref(['2021/10/01', '2021/10/02', '2021/10/03']);
     return {
+      datasLivres,
+      datasAgendadas,
       valorInicial,
       step: ref(1),
-      lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...',
-      model: ref('Chanel'),
+      cumprimento: ref('Chanel'),
       date,
-      options: ['Chanel ', 'Long Bob', 'Busto', 'Cintura', 'Quadril'],
+      coprimentos: ['Chanel ', 'Long Bob', 'Busto', 'Cintura', 'Quadril'],
       time,
       timeWithSeconds,
-      dataAdendada: ref(formatDate(getTodayDate())),
+      dataAgendada: ref(formatDate(getTodayDate())),
     };
   },
 });
@@ -222,6 +258,17 @@ export default defineComponent({
 
 <style scoped>
 .container {
-  max-width: 500px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+@media screen and (min-width: 600px) {
+  .container {
+    max-width: 100%;
+  }
 }
 </style>
