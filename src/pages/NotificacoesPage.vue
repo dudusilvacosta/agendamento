@@ -5,7 +5,7 @@
       <div class="chat">
         <q-chat-message
           name="Agendamento"
-          avatar="https://cdn.quasar.dev/img/avatar1.jpg"
+          avatar="https://cdn.pixabay.com/photo/2018/01/17/17/21/head-3088623_640.png"
           :text="['hey, how are you?']"
           stamp="7 minutes ago"
           sent
@@ -15,7 +15,7 @@
 
         <q-chat-message
           name="Agendamento"
-          avatar="https://cdn.quasar.dev/img/avatar1.jpg"
+          avatar="https://cdn.pixabay.com/photo/2018/01/17/17/21/head-3088623_640.png"
           :text="['hey, how are you?']"
           stamp="7 minutes ago"
           sent
@@ -85,6 +85,6 @@ h2 {
   height: calc(100vh - 145px);
   max-width: 600px;
   padding: 1rem;
-  background-color: #e3e3e3;
+  background-color: #e6e6e6;
 }
 </style>

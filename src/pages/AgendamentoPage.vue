@@ -1,6 +1,13 @@
 <template>
   <div class="q-pa-md">
-    <h2>Agendamento</h2>
+    <div style="display: flex; gap: 1rem; align-items: center">
+      <h2>Agendamento</h2>
+      <q-breadcrumbs>
+        <q-breadcrumbs-el label="Tipos de Penteados" />
+        <q-breadcrumbs-el label="Modelos de Penteado" />
+        <q-breadcrumbs-el label="Agendamento" />
+      </q-breadcrumbs>
+    </div>
     <div class="container">
       <q-stepper v-model="step" vertical color="primary" animated>
         <q-step
@@ -14,7 +21,7 @@
               src="https://img.freepik.com/fotos-premium/foto-de-box-braids_889056-2231.jpg"
             >
               <div class="absolute-bottom text-h6">
-                Valor inicial R$ {{ valorInicial }}
+                Valor inicial R$ {{ agendamento.valorInicial }}
               </div>
             </q-img>
           </q-card>
@@ -32,15 +39,12 @@
           :done="step > 2"
         >
           <q-card>
-            <q-img
-              src="https://i.pinimg.com/originals/42/29/59/4229593e8eca1f984760aae49352d07a.jpg"
-            >
-            </q-img>
+            <q-img :src="img"> </q-img>
           </q-card>
           <q-select
             filled
-            v-model="cumprimento"
-            :options="coprimentos"
+            v-model="agendamento.comprimento"
+            :options="comprimentos"
             label="Comprimento"
             class="q-mt-md"
           />
@@ -65,29 +69,18 @@
           :done="step > 3"
         >
           <q-date
-            v-model="date"
+            v-model="agendamento.data"
             :options="datasLivres"
             minimal
             class="q-mb-md"
           />
 
-          <q-input filled v-model="time" mask="time" :rules="['time']">
-            <template v-slot:append>
-              <q-icon name="access_time" class="cursor-pointer">
-                <q-popup-proxy
-                  cover
-                  transition-show="scale"
-                  transition-hide="scale"
-                >
-                  <q-time v-model="time">
-                    <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
-                    </div>
-                  </q-time>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
+          <q-select
+            filled
+            v-model="agendamento.hora"
+            :options="horasLivres"
+            label="Filled"
+          />
 
           <q-stepper-navigation>
             <q-btn @click="step = 4" color="primary" label="Continue" />
@@ -109,37 +102,37 @@
         >
           <div class="col-12 col-sm-6 q-gutter-sm">
             <div class="text-h6">Tipo de penteado</div>
-            <div>selected</div>
+            <div>{{ agendamento.tipoPenteado }}</div>
 
             <q-separator spaced />
 
             <div class="text-h6">Modelo de penteado</div>
             <div>
-              <div>tick</div>
+              <div>{{ agendamento.modeloPenteado }}</div>
             </div>
 
             <q-separator spaced />
 
             <div class="text-h6">Comprimento do penteado</div>
             <div>
-              <div>{{ cumprimento }}</div>
+              <div>{{ agendamento.comprimento }}</div>
             </div>
 
             <q-separator spaced />
 
             <div class="text-h6">Data do procedimento</div>
-            <div>{{ dataAgendada }}</div>
+            <div>{{ formataData(agendamento.data) }}</div>
 
             <q-separator spaced />
 
             <div class="text-h6">Hora do procedimento</div>
-            <div>{{ time }}</div>
+            <div>{{ agendamento.hora }}</div>
 
             <q-separator spaced />
 
             <div class="text-h6">Valor final</div>
             <div>
-              <div>R$</div>
+              <div>R$ {{ agendamento.valorFinal }}</div>
             </div>
           </div>
 
@@ -161,59 +154,26 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useAgendamentoStore } from 'src/stores/agendamento-store';
+import img from '../assets/comprimento.png';
 
 export default defineComponent({
   name: 'AgendamentoPage',
 
   components: {},
 
-  watch: {
-    data: {
-      handler(val) {
-        console.log(val);
-      },
-      deep: true,
-    },
-  },
+  watch: {},
 
   setup() {
-    // Função para obter a data de hoje no formato YYYY/MM/DD
-    const getTodayDate = () => {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
-      return `${year}/${month}/${day}`;
-    };
-
-    // Variável reativa date com valor inicial como a data de hoje
-    const date = ref(getTodayDate());
-    const getCurrentTime = () => {
-      const today = new Date();
-      const hours = String(today.getHours()).padStart(2, '0');
-      const minutes = String(today.getMinutes()).padStart(2, '0');
-      return `${hours}:${minutes}`;
-    };
-
-    // Função para formatar a data em dd/MM/yyyy
-    const formatDate = (dateString: string) => {
-      const [year, month, day] = dateString.split('/');
-      return `${day}/${month}/${year}`;
-    };
-
-    // Função para obter o horário atual no formato HH:MM:SS
-    const getCurrentTimeWithSeconds = () => {
-      const today = new Date();
-      const hours = String(today.getHours()).padStart(2, '0');
-      const minutes = String(today.getMinutes()).padStart(2, '0');
-      const seconds = String(today.getSeconds()).padStart(2, '0');
-      return `${hours}:${minutes}:${seconds}`;
+    const formataData = (data: string) => {
+      const [ano, mes, dia] = data.split('/');
+      return `${dia}/${mes}/${ano}`;
     };
 
     // Variáveis reativas com valores iniciais
-    const valorInicial = ref(100);
-    const time = ref(getCurrentTime());
-    const timeWithSeconds = ref(getCurrentTimeWithSeconds());
+    const agendamentoStore = useAgendamentoStore();
+    const agendamento = agendamentoStore.agendamento;
+    const hora = agendamentoStore.agendamento.hora;
     const datasLivres = ref([
       '2024/08/01',
       '2024/08/02', // quinta e sexta
@@ -239,17 +199,34 @@ export default defineComponent({
       '2024/08/30', // segunda a sexta
     ]);
     const datasAgendadas = ref(['2021/10/01', '2021/10/02', '2021/10/03']);
+    const horasLivres = ref([
+      '08:00',
+      '09:00',
+      '10:00',
+      '11:00',
+      '12:00',
+      '13:00',
+      '14:00',
+      '15:00',
+      '16:00',
+      '17:00',
+      '18:00',
+      '19:00',
+      '20:00',
+      '21:00',
+      '22:00',
+    ]);
     return {
+      step: ref(1),
+      img,
       datasLivres,
       datasAgendadas,
-      valorInicial,
-      step: ref(1),
-      cumprimento: ref('Chanel'),
-      date,
-      coprimentos: ['Chanel ', 'Long Bob', 'Busto', 'Cintura', 'Quadril'],
-      time,
-      timeWithSeconds,
-      dataAgendada: ref(formatDate(getTodayDate())),
+      horasLivres,
+      horasAgendadas: ref(['08:00', '09:00', '10:00']),
+      agendamento,
+      comprimentos: ['Chanel ', 'Long Bob', 'Busto', 'Cintura', 'Quadril'],
+      hora,
+      formataData,
     };
   },
 });
