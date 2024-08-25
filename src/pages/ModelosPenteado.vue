@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
-    <div style="display: flex; gap: 1rem; align-items: center">
+    <div class="migalha">
       <h2>Modelos de Penteado</h2>
-      <q-breadcrumbs>
+      <q-breadcrumbs class="breadcrumbs">
         <q-breadcrumbs-el label="Tipos de Penteado" />
         <q-breadcrumbs-el label="Modelos de Penteado" />
       </q-breadcrumbs>
@@ -124,9 +124,23 @@ h2 {
   display: inline-block;
 }
 
+.migalha {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 @media (max-width: 700px) {
   .container {
     column-count: 3;
+  }
+  .migalha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .breadcrumbs {
+    font-size: 0.7rem;
   }
 }
 

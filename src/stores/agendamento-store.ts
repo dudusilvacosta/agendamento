@@ -8,10 +8,10 @@ export const useAgendamentoStore = defineStore('agendamento', {
       modeloPenteado: '',
       valorInicial: 0,
       comprimento: 'Escolher',
-      data: '',
-      hora: '09:24:10',
+      data: '0000/00/00',
+      hora: '00:00',
       valorFinal: 0,
-      status: '',
+      status: false,
     },
   }),
   getters: {
@@ -41,8 +41,20 @@ export const useAgendamentoStore = defineStore('agendamento', {
     setValorFinal(valorFinal: number) {
       this.agendamento.valorFinal = valorFinal;
     },
-    setStatus(status: string) {
+    setStatus(status: boolean) {
       this.agendamento.status = status;
+    },
+    resetAgendamento() {
+      this.agendamento = {
+        tipoPenteado: '',
+        modeloPenteado: '',
+        valorInicial: 0,
+        comprimento: 'Escolher',
+        data: '0000/00/00',
+        hora: '00:00',
+        valorFinal: 0,
+        status: false,
+      };
     },
   },
 });

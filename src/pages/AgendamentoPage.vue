@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
-    <div style="display: flex; gap: 1rem; align-items: center">
+    <div class="migalha">
       <h2>Agendamento</h2>
-      <q-breadcrumbs>
+      <q-breadcrumbs class="breadcrumbs">
         <q-breadcrumbs-el label="Tipos de Penteados" />
         <q-breadcrumbs-el label="Modelos de Penteado" />
         <q-breadcrumbs-el label="Agendamento" />
@@ -21,7 +21,7 @@
               src="https://img.freepik.com/fotos-premium/foto-de-box-braids_889056-2231.jpg"
             >
               <div class="absolute-bottom text-h6">
-                Valor inicial R$ {{ agendamento.valorInicial }}
+                Modelo {{ agendamento.modeloPenteado }}
               </div>
             </q-img>
           </q-card>
@@ -130,7 +130,7 @@
 
             <q-separator spaced />
 
-            <div class="text-h6">Valor final</div>
+            <div class="text-h6">Valor</div>
             <div>
               <div>R$ {{ agendamento.valorFinal }}</div>
             </div>
@@ -242,9 +242,25 @@ h2 {
   font-size: 1.5rem;
   font-weight: 400;
 }
+.migalha {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 @media screen and (max-width: 600px) {
   .container {
     max-width: 100%;
+  }
+  .migalha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .breadcrumbs {
+    font-size: 0.7rem;
+  }
+  .text-h6 {
+    font-size: 1rem;
   }
 }
 </style>
