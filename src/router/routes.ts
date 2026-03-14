@@ -7,9 +7,16 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/PokemonsPage.vue') }],
   },
   {
-    path: '/entrar',
+    path: '/agendamento',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/EntrarPage.vue') }],
+    children: [
+      { path: '', component: () => import('pages/AgendamentoPage.vue') },
+    ],
+  },
+  {
+    path: '/contato',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/ContatoPage.vue') }],
   },
   {
     path: '/criar-conta',
@@ -19,21 +26,9 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/sobre',
+    path: '/entrar',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/SobrePage.vue') }],
-  },
-  {
-    path: '/pokemon/:id',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/PokemonPage.vue') }],
-  },
-  {
-    path: '/agendamento',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/AgendamentoPage.vue') },
-    ],
+    children: [{ path: '', component: () => import('pages/EntrarPage.vue') }],
   },
   {
     path: '/notificacoes',
@@ -43,14 +38,24 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/contato',
+    path: '/pokemon/:id',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/ContatoPage.vue') }],
+    children: [{ path: '', component: () => import('pages/PokemonPage.vue') }],
   },
   {
     path: '/sair',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/SairPage.vue') }],
+  },
+  {
+    path: '/sobre',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/SobrePage.vue') }],
+  },
+  {
+    path: '/videos',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/VideosPage.vue') }],
   },
   {
     path: '/:catchAll(.*)*',

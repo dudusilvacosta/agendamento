@@ -112,8 +112,14 @@ const linksList: EssentialLinkProps[] = [
   {
     title: 'Contato',
     caption: 'Fale conosco',
-    icon: 'email',
+    icon: 'mail',
     to: '/contato',
+  },
+  {
+    title: 'Vídeos',
+    caption: 'playlist',
+    icon: 'videocam',
+    to: '/videos',
   },
   {
     title: 'Sair',
