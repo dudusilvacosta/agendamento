@@ -4,9 +4,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/TiposPenteado.vue') },
-    ],
+    children: [{ path: '', component: () => import('pages/PokemonsPage.vue') }],
   },
   {
     path: '/entrar',
@@ -16,7 +14,9 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/criar-conta',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/CriarConta.vue') }],
+    children: [
+      { path: '', component: () => import('src/pages/CriarContaPage.vue') },
+    ],
   },
   {
     path: '/sobre',
@@ -24,11 +24,9 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/SobrePage.vue') }],
   },
   {
-    path: '/modelos-penteado',
+    path: '/pokemon/:id',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/ModelosPenteado.vue') },
-    ],
+    children: [{ path: '', component: () => import('pages/PokemonPage.vue') }],
   },
   {
     path: '/agendamento',

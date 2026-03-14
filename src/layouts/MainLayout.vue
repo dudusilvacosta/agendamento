@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>Agendamento</q-toolbar-title>
+        <q-toolbar-title>API do Pokémon</q-toolbar-title>
 
         <div class="redes">
           <svg
@@ -98,8 +98,8 @@ const linksList: EssentialLinkProps[] = [
     to: '/sobre',
   },
   {
-    title: 'Penteados',
-    caption: 'Conheça os tipos',
+    title: 'Pokémons',
+    caption: 'detalhes',
     icon: 'psychology',
     to: '/',
   },

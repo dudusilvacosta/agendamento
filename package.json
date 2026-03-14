@@ -1,8 +1,8 @@
 {
-  "name": "agendamento",
+  "name": "api-pokemon",
   "version": "0.0.1",
-  "description": "agendamento de horários",
-  "productName": "Agendamento",
+  "description": "api do pokémon",
+  "productName": "Api Pokémon",
   "author": "eduardo <eduardosilvacosta.dev@gmail.com>",
   "private": true,
   "scripts": {
