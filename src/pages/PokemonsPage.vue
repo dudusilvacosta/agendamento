@@ -1,10 +1,10 @@
 <template>
   <div class="q-pa-md">
     <div class="migalha">
-      <h2>Modelos de Penteado</h2>
+      <h2>Pokémos</h2>
       <q-breadcrumbs class="breadcrumbs">
-        <q-breadcrumbs-el label="Tipos de Penteado" />
-        <q-breadcrumbs-el label="Modelos de Penteado" />
+        <q-breadcrumbs-el label="migalhas" />
+        <q-breadcrumbs-el label="de pão" />
       </q-breadcrumbs>
     </div>
     <div class="container">
