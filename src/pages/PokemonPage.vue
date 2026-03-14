@@ -107,7 +107,6 @@ export default defineComponent({
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
       pokemon.value = res.data;
-      console.log(JSON.stringify(pokemon.value, null, 2));
     };
 
     onMounted(carregarPokemon);

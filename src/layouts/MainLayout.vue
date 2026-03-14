@@ -99,8 +99,8 @@ const linksList: EssentialLinkProps[] = [
   },
   {
     title: 'Pokémons',
-    caption: 'detalhes',
-    icon: 'psychology',
+    caption: 'lista detalhes',
+    icon: 'catching_pokemon',
     to: '/',
   },
   {

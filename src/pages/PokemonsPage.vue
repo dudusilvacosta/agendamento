@@ -8,7 +8,7 @@
       </q-breadcrumbs>
     </div>
     <div class="container">
-      <div v-for="(pokemon, index) in pokemons" :key="index">
+      <div v-for="(pokemon, index) in pokemonsPaginados" :key="index">
         <q-card class="my-card">
           <q-img :src="pokemon.img">
             <div class="absolute-bottom" style="font-size: 1rem">
@@ -18,18 +18,26 @@
           <q-card-section>
             <q-btn
               color="primary"
-              label="Detalhes"
+              icon="search"
+              size="sm"
               :to="`/pokemon/${pokemon.id}`"
             />
           </q-card-section>
         </q-card>
       </div>
     </div>
+    <div class="q-mt-lg flex flex-center">
+      <q-pagination
+        v-model="pagina"
+        :max="Math.ceil(pokemons.length / porPagina)"
+        direction-links
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import type { PokemonAPI, Pokemon } from 'src/types/pokemon';
 
@@ -38,9 +46,19 @@ export default defineComponent({
 
   setup() {
     const pokemons = ref<Pokemon[]>([]);
+    const pagina = ref(1);
+    const porPagina = 36;
+
+    const pokemonsPaginados = computed(() => {
+      const inicio = (pagina.value - 1) * porPagina;
+      const fim = inicio + porPagina;
+      return pokemons.value.slice(inicio, fim);
+    });
 
     const carregarPokemons = async () => {
-      const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20');
+      const res = await axios.get(
+        'https://pokeapi.co/api/v2/pokemon?limit=2000'
+      );
       pokemons.value = res.data.results.map((p: PokemonAPI, index: number) => {
         const id = index + 1;
 
@@ -62,6 +80,9 @@ export default defineComponent({
 
     return {
       pokemons,
+      pokemonsPaginados,
+      pagina,
+      porPagina,
       verPokemon,
     };
   },
@@ -76,11 +97,12 @@ h2 {
 }
 
 .container {
-  column-count: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .my-card {
-  width: 100%;
   margin-bottom: 1rem;
   display: inline-block;
 }
@@ -91,7 +113,7 @@ h2 {
   align-items: center;
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .container {
     column-count: 3;
   }
@@ -115,5 +137,5 @@ h2 {
   .container {
     column-count: 1;
   }
-}
+} */
 </style>
